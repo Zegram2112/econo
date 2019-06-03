@@ -1370,7 +1370,113 @@ y que
 
 % 7 8 9
 
+\begin{example}
+    Se tienen $m$ firmas, tal que $C\!\left( q \right) = a + bq^2$, con $a$ costos fijos y $b$ dependiente de los precios de los factores.
+    \begin{enumerate}
+    \item Funciones de oferta para cada firma y de industria
+        \begin{align*}
+            CMg\!\left( q \right) &= \frac{\partial C}{\partial q}  = 2bq \\
+            CMe\!\left( q \right) &= \frac{a}{q} + bq \\
+            CMeV\!\left( q \right) &= bq
+        \end{align*}
+        La función de oferta inversa de una firma es la función creciente de su costo marginal por encima del min del $CMeV$
 
+        ¿Dónde está el mínimo del $CMeV$? en $q=0$
+        \GRAF
+        La función de oferta inversa es el $CMg\!\left( q \right) $ completo
+        \begin{align*}
+            &P = 2bq_{s} \qquad \text{(función de oferta inversa)}\\
+            &q_s\!\left( P \right) = \frac{P}{2b} \qquad \text{(función de oferta de cada firma)}\\ 
+            &\sum_{i=1}^{m} q_{s_i}\!\left( P \right) = \frac{mP}{2b} \qquad \text{(oferta de la industria)}
+        \end{align*}
+    \item ¿A partir de qué precio tiene utilidades positivas?
+        \[
+            \begin{aligned}
+            &P > \tilde{B} = \min CMe\!\left( q \right) \qquad \tilde{P} = 2\sqrt{ab} \\
+            \end{aligned}
+        \] 
+        \[
+            CMe\!\left( q \right) = \frac{-a}{q^2} + b = 0 & \iff \tilde{q}^2 = \frac{a}{b} \implies \tilde{q} = \sqrt{\frac{a}{b}} 
+        \]
+        \[
+            \implies \tile{P} = \frac{a}{\tilde{q}} = \frac{a}{\sqrt{\frac{a}{b}} } + b \sqrt{\frac{a}{b}} = 2\sqrt{ab} 
+        \] 
+        \GRAF
+    \end{enumerate}
+\end{example}
+
+\subsubsection{Funciones de producción}
+
+\begin{enumerate}
+\item Identificar que es factible: qué combinación de insumos permiten producir una cantidad dada
+\item De las combinaciones que son factibles, cuál es más barata
+\end{enumerate}
+
+Para responde esto se simplifica considerando 2 insumos
+\begin{itemize}
+    \item Trabajo (labor) $\longrightarrow$ L
+    \item Capital (maquinarias, robots, tierra) $\longrightarrow$ K
+\end{itemize}
+
+\begin{definition}{Función de producción}
+    Función que asocia a cada combinación de insumos, el \underline{mayor} n° de unidades que es posible producir en un periodo de producción (usando insumos y tecnologías)
+    \[
+    q = f\!\left( K, L \right) 
+    \] 
+    \begin{itemize}
+        \item $q$ : unidades producidas
+            \item $K$ : unidades de capital
+                \item $L$ : unidades de trabajo
+    \end{itemize}
+\end{definition}
+
+\begin{obs}
+    Existe una función de producción para cada firma, ya que no todas tienen el mismo acceso a la misma tecnología.
+\end{obs}
+
+\begin{obs}
+    En el corto plazo, hay ciertos insumos que pueden estar fijos.
+\end{obs}
+
+\begin{obs}
+    La función de producción no representa si se podrá conseguir esa producción, sino cuanto se produciría en caso de tener la cantidad dada de insumos.
+\end{obs}
+
+\subsection{Producción Marginal}
+
+Si $q=f\!\left( K,L \right) $ es la función de producción de una firma, la productividad marginal del trabajo es la función
+
+\[
+P_{MgL}\!\left( K,L \right) = \frac{\partial f\!\left( K,L \right) }{\partial L}  = f_{L}\!\left( K,L \right) 
+\] 
+
+El incremento en la producción atribuible a la última unidad contratada de trabajo. Así mismo, la productividad marginal del capital se expresa como
+
+\[
+P_{MgK}\!\left( K,L \right) = \frac{\partial f\!\left( K,L \right) }{\partial K} = f_{K}\!\left( K,L \right) 
+\] 
+
+La eficiencia tecnológica implica que 
+
+\[
+f_L > 0 \quad \text{y} \quad f_L > 0
+\] 
+
+Aún cuando puede ocurrir, en casos específicos que
+\[
+f_K = 0 \quad \text{o} \quad f_L = 0
+\] 
+Esto ocurre cuando K y L se necesitan en proporciones fijas, situación que llamaremos \bf{Tecnologías de Leontief}
+
+\begin{example}
+Por ejemplo, si tenemos 10 personas y 10 martillos, si aumento 1 martillo entonces $f_K=0$
+\end{example}
+
+\begin{example}
+    Suponga una empresa de ingenieros que usa computadores e ingenierios. Fijemos el número de computadores en $K_0$
+    \GRAF
+    \GRAF
+\end{example}
 
 % 10 11 12
 
