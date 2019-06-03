@@ -68,6 +68,8 @@
 \DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
 \newcommand{\GRAF}{\begin{center}$$\mathfrak{Gr\acute{a}fico}$$\end{center}}
 
+\renewcommand{\a}{\alpha}
+
 % Comandos para TikZ.
 \def\aureo{1.61803}
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text width=6cm, text centered, draw=black]
@@ -1466,7 +1468,7 @@ Aún cuando puede ocurrir, en casos específicos que
 \[
 f_K = 0 \quad \text{o} \quad f_L = 0
 \] 
-Esto ocurre cuando K y L se necesitan en proporciones fijas, situación que llamaremos \bf{Tecnologías de Leontief}
+Esto ocurre cuando K y L se necesitan en proporciones fijas, situación que llamaremos \textbf{Tecnologías de Leontief}
 
 \begin{example}
 Por ejemplo, si tenemos 10 personas y 10 martillos, si aumento 1 martillo entonces $f_K=0$
@@ -1484,9 +1486,127 @@ Por ejemplo, si tenemos 10 personas y 10 martillos, si aumento 1 martillo entonc
 
 % 13 14 15
 
+\subsection{El problema de la minimización del costo}
 
+\begin{cases}
+    \[
+    \min\limits_{K,L} \quad wL + rK\\
+    f\!\left( K,L \right) = q
+\]
+\end{cases}
+
+\GRAF
+
+La firma elije la combinación de insumos sobre la isocuanta seleccionada que se encuentre sobre la recta de isogastos más cercana posible al origen.
+$\left( K_0,L_0 \right) $ está dado por el punto de tangencia entre la recta de isogastos y la isocuanta.
+
+\[
+\left.
+    \begin{aligned}
+        \mathrm{TST}_{K,L} = \frac{\mathrm{d}K\!\left( L,q \right) }{\mathrm{d}L}=\frac{f_L}{f_K}=\frac{w}{r}\\
+        f\!\left( K,L \right) = q
+    \end{aligned}   
+\right\}
+\begin{aligned}
+    K_0\!\left( w,r,q \right) \\
+    L_0\!\left( w,r,q \right) 
+\end{aligned}
+\]
+
+$K_0\!\left( w,r,q \right) $ y $L_0\!\left( w,r,q \right) $ indican cuanto capital y trabajo se requiere para producir q, el mínimo gasto posible. Se denominan demandas condicionales por insumo
+
+\begin{definition}{La función de costo}
+\[
+    C\!\left( w,r,q \right) = wL_0\!\left( w,r,q \right) + rK_0\!\left( w,r,q \right) \qquad \text{(Función de costo)}
+\] 
+    \end{definition}
+
+Con esto, el problema de minimización de costo se expresa como
+
+\[
+    \begin{cases}
+        C\!\left( w,r,q \right) = \min\limits_{K,L} wL + rK\\
+        f\!\left( K,L \right) = q
+    \end{cases} 
+    \]
+
+\GRAF
+
+\begin{definition}{Insumos óptimos}
+    Tangencia entre isocuanta y la recta de isogasto más cercano posible al origen
+\end{definition}
+
+En el óptimo, la $\mathrm{TST}$ debe ser igual a la razón entre precios de insumos
+
+\begin{enumerate}
+\item $\mathrm{TST}_{K,L} = \frac{\mathrm{d}K\!\left( L,q \right) }{\mathrm{d}L} = \frac{PMgL}{PMgK} = \frac{w}{r}$
+\item $f\!\left( K,L \right) = q$
+\end{enumerate}
+
+\begin{align*}
+    \text{de 1 y 2 } &\implies K_0\!\left( w,r,q \right) y L_0\!\left( w,r,q \right) \\
+    &\implies \text{demandas condicionadas por factores o insumos}
+\end{align*}
+
+\begin{example}
+    {$f\!\left( K,L \right) = k^{\frac{1}{2}} L^{\frac{1}{2}}$}
+    \begin{enumerate}
+        \item Demandas condicionales:
+            \[
+                \frac{f_L}{f_K} = \frac{w}{r} \quad , \quad f\!\left( K,L \right) = q
+            \] 
+            \begin{align*}
+                &\implies \frac{\frac{1}{2}L^{\frac{-1}{2}}K^{\frac{1}{2}}}{\frac{1}{2}K^{\frac{-1}{2}}L^{\frac{1}{2}}} = \frac{w}{r} \land K^{\frac{1}{2}}L^{\frac{1}{2}} = q\\
+                &\implies \frac{K}{L} = \frac{w}{r} \land K^{\frac{1}{2}}L^{\frac{1}{2}} = q \\
+                &\implies \left( \frac{w}{r} \right) ^{\frac{1}{2}} L^{\frac{1}{2}}L^{\frac{1}{2}} = q \\
+                &\implies L_0\!\left( w,r,q \right) = \left( \frac{r}{w} \right) ^{\frac{1}{2}} \qquad K_0\!\left( w,r,q \right) = \left( \frac{w}{r} \right) ^{\frac{1}{2}} q
+            \end{align*}
+            \begin{obs}
+                Las demandas condicionales por factores dependen de  $\frac{w}{r}$, si ambos precios cambian en la misma proporción $\alpha$, la demanda por insumos no va a cambiar porque la pendiente de la recta de isogasto no cambia
+                \begin{align*}
+                    \implies & K\!\left( \alpha w, \alpha r, q \right) = K\!\left( w,r,q \right) \\
+                             & L\!\left( \a w, \a r, q \right) = L\!\left( w,r,q \right) 
+                \end{align*}
+
+                \[
+                    \left. 
+                        \begin{aligned}
+                            K\!\left( \a w, \a r, q \right) &= \a^{\lambda}K\!\left( w,r,q \right) \\
+                            K\!\left( \a w, \a r, q \right) &= \a^{\lambda}L\!\left( w,r,q \right) 
+                        \end{aligned}
+                    \right]
+                    \begin{smallmatrix}
+                        \text{con } \lambda = 0, \ \lambda \ \text{es el grado de}\\
+                        \text{homogeneidad de las demandas}\\
+                        \text{condicionales con respecto a los}\\
+                        \text{precios de los insumos}
+                    \end{smallmatrix}
+                \] 
+                Las demandas condicionales son homogéneas de gasto 0 en los precios de factores
+            \end{obs}
+            \item La función de costo:
+                \begin{align*}
+                    C\!\left( w,r,q \right) &= wL_0\!\left( w,r,q \right) + rK_0\!\left( w,r,q \right) \\
+                    &= 2\!\left( wr \right) ^{\frac{1}{2}} q \\
+                    &= Aq
+                \end{align*}
+
+                donde $A$ es la constante que depende de los precios de insumos
+            
+
+\end{example}
+
+\begin{prop}{Propiedad de la función de costo}
+    \begin{align*}
+        C\!\left( \a w, \a r, q \right) &= \a w L_0\!\left( \a w, \a r, q \right) + \a r K_0\!\left( \a w, \a r, q \right) \\
+        &= \a w L_0\!\left( w,r,q \right) + \a r K_0\!\left( w,r,q \right)  \\
+        &= \a\left( w L_0\!\left( w,r,q \right) + r K_0\!\left( w,r,q \right)  \right)  \\
+        &= \a C\!\left( w,r,q \right) 
+    \end{align*}
 
 % 16 17 18
+    La función de costo es homogénea de grado 1 en los precios de factores o insumos
+\end{prop}
 
 
 
