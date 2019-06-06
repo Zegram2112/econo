@@ -69,6 +69,7 @@
 \newcommand{\GRAF}{\begin{center}$$\mathfrak{Gr\acute{a}fico}$$\end{center}}
 
 \renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
 
 % Comandos para TikZ.
 \def\aureo{1.61803}
@@ -103,6 +104,8 @@
 % Página en blanco (usar con \newpage\null\thispagestyle{blank}\newpage).
 \DeclareNewLayer[foreground,contents={\parbox[b][\layerheight][c]{\layerwidth}{\centering This page was intentionally left blank.}}]{blankpage.fg}
 \DeclarePageStyleByLayers{blank}{blankpage.fg}
+
+\pgfplotsset{compat=1.15}
 
 \begin{document}
 
@@ -926,21 +929,21 @@ $$\mathrm{TSC}=-\frac{\mathrm{d}}{\mathrm{d}x}y\!\left(x,U_0\right)=\frac{\dfrac
     $$ \frac{\mathrm{d}}{\mathrm{d}x} \mathrm{TSC}_{y,x}\!\left(x,y\!\left(x,U\right)\right) < 0 \Leftrightarrow \frac{\mathrm{d}^2}{\mathrm{d}x^2}y\!\left(x,U\right) > 0 \text{,}$$
     es decir, $y\!\left(x,U\right)$ es convexa.
 
-    \begin{center}
-    \begin{tikzpicture}[
-        declare function={arco(\x) = 2.5 - sqrt( 4 - (\x - 2.5)^2);
-        }
-    ]
-    \draw[latex-latex] (-1, 0) -- (3, 0) node [below] {$x$};
-    \draw[latex-latex] (0, -1) -- (0, 3) node [left] {$y$};
-    \draw[red] (0.5, 2.5) arc (180:270:2) node [right] {$y\left(x,U_0\right)$};
-    \foreach \i in {0.7, 1.2, 1.9, 2.4} {
-        \draw[dashed] (\i, 0) -- (\i, arco(\i); );
-    };
-    \draw[dashed] (0, 1.5) -- ( arco(1); , 1.5);
+%    \begin{center}
+%    \begin{tikzpicture}[
+%        declare function={arco(\x) = 2.5 - sqrt( 4 - (\x - 2.5)^2)
+%        }
+%    ]
+%    \draw[latex-latex] (-1, 0) -- (3, 0) node [below] {$x$};
+%    \draw[latex-latex] (0, -1) -- (0, 3) node [left] {$y$};
+%    \draw[red] (0.5, 2.5) arc (180:270:2) node [right] {$y\left(x,U_0\right)$};
+%    \foreach \i in {0.7, 1.2, 1.9, 2.4} {
+%        \draw[dashed] (\i, 0) -- (\i, arco(\i) )
+%    };
+%    \draw[dashed] (0, 1.5) -- ( arco(1) , 1.5)
     %OE AYURAME CON ESTO PLIS
-    \end{tikzpicture}
-\end{center}
+%    \end{tikzpicture}
+%\end{center}
     
     La gente prefiere las canastas balanceadas.
 
@@ -968,11 +971,14 @@ lo que quiere decir que se escoge la canasta $\left(x,y\right)$ que maximiza la 
 
 El consumidor elige la canasta sobre la restricción presupuestaria (es decir, con igualdad) que está sobre la curva de indiferencia de mayor utilidad. Según esto, existe una tangencia entre la restricción presupuestaria y la curva de indiferencia. Por lo tanto, la canasta óptima estará dada por la solución del siguiente sistema de ecuaciones
 
-$$\left\{
-\begin{align}
+\[
+\left\{
+\begin{aligned}
 \mathrm{TSC}_{y,x}\!\left(x^*,y^*\right)&=\left.-\frac{\mathrm{d}}{\mathrm{d}x}y\!\left(x\right)\right|_{\begin{smallmatrix}x=x^*\\ y=y^*\end{smallmatrix}}=\frac{U_x\!\left(x^*,y^*\right)}{U_y\!\left(x^*,y^*\right)}=\frac{P_x}{P_y}\\
 P_xx^*+P_yy^*&=I
-\end{align}\right.$$
+\end{aligned}
+\right.
+\]
 
 \subsubsection{¿Por qué en el óptimo la $\mathrm{TSC}_{y,x}$ es igual a la razón entre precios?}
 
@@ -993,23 +999,29 @@ $$\mathscr{L}\!\left(x,y,\lambda\right)=U\!\left(x,y\right)+\lambda\left(I-P_xx-
 
 y se buscan las siguientes condiciones de primer orden (CPO) para maximizar el lagrangiano
 
-$$\left\{
-\begin{align}
+\[
+\left\{
+\begin{aligned}
 \frac{\partial\mathscr{L}}{\partial x} & = \frac{\partial}{\partial x}U\!\left(x,y\right)-\lambda P_x=0 \\
 \frac{\partial\mathscr{L}}{\partial y} & = \frac{\partial}{\partial y}U\!\left(x,y\right)-\lambda P_x=0 \\
 \frac{\partial\mathscr{L}}{\partial \lambda} & = I-P_xx-P_yy=0
-\end{align}\right.$$
+\end{aligned}
+\right.
+\]
 
 De las primeras dos ecuaciones se tiene que
 
 $$\frac{\partial}{\partial x}U\!\left(x^*,y^*\right)=\lambda P_x\qquad\text{y}\qquad\frac{\partial}{\partial y}U\!\left(x^*,y^*\right)=\lambda P_y\text{,}$$
 y con esto, queda el siguiente sistema de ecuaciones
 
-$$\left\{
-\begin{align}
+\[
+\left\{
+\begin{aligned}
 \frac{\dfrac{\partial}{\partial x}U\!\left(x^*,y^*\right)}{\dfrac{\partial}{\partial y}U\!\left(x^*,y^*\right)}&=\frac{P_x}{P_y}=\mathrm{TSC} \\
 P_xx^*+P_yy^*&=I
-\end{align}\right.\text{;}$$
+\end{aligned}
+\right.\text{;}
+\]
 $\lambda$ se conoce como el <<multiplicador de Lagrange>>, y representa cuánto aumenta la función objetivo ($U\!\left(x,y\right)$) si se relaja en 1 unidad la restricción.
 
 \begin{prop}{Propiedades de las funciones de demanda}
@@ -1134,7 +1146,7 @@ $$E_{Q_D,I}=\frac{\partial Q_D^*}{\partial I}\frac{I}{Q_D^*}<1\text{.}$$
 \end{definition}
 
 ¿Por qué se definen así? Sea $\dfrac{P_xx}{I}$ la proporción del ingreso gastada en un bien, con $x=x\!\left(P_x,P_y,I\right)$. Se tiene que la variación de esta proporción si varía el ingreso está dada por
-$$\begin{align}
+\begin{align}
 \frac{\partial}{\partial I}\left(\frac{P_xx\!\left(P_x,P_y,I\right)}{I}\right)&=\frac{P_x}{I^2}\left(\frac{\partial x\!\left(P_x,P_y,I\right)}{\partial I}I-x\!\left(P_x,P_y,I\right)\right)\\
 {}&=\frac{P_xx}{I^2}\left(\frac{\partial x}{\partial I}\frac{I}{x}-1\right)\\
 {}&=\underbrace{\frac{P_xx}{I^2}}_{\mathrm{
@@ -1143,7 +1155,7 @@ $$\begin{align}
 \text{positivo}
 \end{smallmatrix}
 }}\left(E_{x,I}-1\right)\text{,}\\
-\end{align}$$
+\end{align}
 $$
 \begin{matrix}
 \text{si} & E_{x,I} > 1 & \text{el bien es de lujo,} \\
@@ -1169,7 +1181,7 @@ x\!\left(\sum_{i=1}^{m}\frac{1}{m}I_i\right)
 \GRAF $x$ es cóncava (de primera necesidad),
 \begin{align*}
     &\Rightarrow x\!\left(\alpha A + \left(1 - \alpha \right)B\right) 
-    > \alfa x\!\left(A\right)+\left(1-\alpha\right)x\!\left(B\right)\\
+    > \alpha x\!\left(A\right)+\left(1-\alpha\right)x\!\left(B\right)\\
     &\Rightarrow x\!\left(\sum_{i=1}^{m}\frac{1}{m}I_i\right) > \frac{1}{m}\sum_{i=1}^{m}x\!\left(I_i\right) \quad \text{pues } x\!\left(I\right) \text{es de primera necesidad}\\
     &\Leftrightarrow \underbrace{m\left(\frac{I}{m}\right)}_{\begin{smallmatrix}
     \text{Demanda para una} \\ \text{distribución de} \\ \text{ingreso equitativa}
@@ -1187,7 +1199,7 @@ La mayor demanda por un bien de lujo se obtiene cuando el ingreso está concentr
 Sea $x\!\left(I_i\right)$ la demanda del individuo $i$-ésimo con ingreso $I_i$. Considerando a todos los individuos con las mismas preferencias. El ingreso total de la economía se expresa como $I = \displaystyle{\sum_{i=1}^{m}} I_i$.
 
 $$
-\forall j\in\left\{1,\ldots,m\right\},\frac{Px\!\left(I\right)}{I} = \frac{Px\!\left(\displaystyle{\sum_{i=1}^{m}}I_i\right)}{\displaystyle{\sum_{i=1}^{m}}I_i\right} \lessgtr \frac{Px\!\left(I_j\right)}{I_j}\text{.}
+\forall j\in\left\{1,\ldots,m\right\},\frac{Px\!\left(I\right)}{I} = \frac{Px\!\left(\displaystyle{\sum_{i=1}^{m}}I_i\right)}{\displaystyle{\sum_{i=1}^{m}}I_i} \lessgtr \frac{Px\!\left(I_j\right)}{I_j}\text{.}
 $$
 
 Sea $M$ un ingreso cualquiera, $\dfrac{Px\!\left(M\right)}{M}$ es creciente para bienes de lujo $\Leftrightarrow E_{x,I} > 1$.
@@ -1223,6 +1235,8 @@ Si el impuesto grava más a los pobres que a los ricos, pero el dinero se gasta 
 % 1 2 3 4 5 6
 
 \chapter{Oferta}
+
+\thispagestyle{fancy}
 
 \section{Firmas y sus decisiones}
 
@@ -1377,15 +1391,15 @@ y que
     \begin{enumerate}
     \item Funciones de oferta para cada firma y de industria
         \begin{align*}
-            CMg\!\left( q \right) &= \frac{\partial C}{\partial q}  = 2bq \\
-            CMe\!\left( q \right) &= \frac{a}{q} + bq \\
-            CMeV\!\left( q \right) &= bq
+            C_\text{mg}\!\left( q \right) &= \frac{\partial C}{\partial q}  = 2bq \\
+            C_\text{me}\!\left( q \right) &= \frac{a}{q} + bq \\
+            C_\text{mev}\!\left( q \right) &= bq
         \end{align*}
-        La función de oferta inversa de una firma es la función creciente de su costo marginal por encima del min del $CMeV$
+        La función de oferta inversa de una firma es la función creciente de su costo marginal por encima del min del $C_\text{mev}$
 
-        ¿Dónde está el mínimo del $CMeV$? en $q=0$
+        ¿Dónde está el mínimo del $C_\text{mev}$? en $q=0$
         \GRAF
-        La función de oferta inversa es el $CMg\!\left( q \right) $ completo
+        La función de oferta inversa es el $C_\text{mg}\!\left( q \right) $ completo
         \begin{align*}
             &P = 2bq_{s} \qquad \text{(función de oferta inversa)}\\
             &q_s\!\left( P \right) = \frac{P}{2b} \qquad \text{(función de oferta de cada firma)}\\ 
@@ -1394,14 +1408,14 @@ y que
     \item ¿A partir de qué precio tiene utilidades positivas?
         \[
             \begin{aligned}
-            &P > \tilde{B} = \min CMe\!\left( q \right) \qquad \tilde{P} = 2\sqrt{ab} \\
+            &P > \tilde{B} = \min C_\text{me}\!\left( q \right) \qquad \tilde{P} = 2\sqrt{ab} \\
             \end{aligned}
         \] 
         \[
-            CMe\!\left( q \right) = \frac{-a}{q^2} + b = 0 & \iff \tilde{q}^2 = \frac{a}{b} \implies \tilde{q} = \sqrt{\frac{a}{b}} 
+            C_\text{me}\!\left( q \right) = \frac{-a}{q^2} + b = 0 \iff \tilde{q}^2 = \frac{a}{b} \implies \tilde{q} = \sqrt{\frac{a}{b}} 
         \]
         \[
-            \implies \tile{P} = \frac{a}{\tilde{q}} = \frac{a}{\sqrt{\frac{a}{b}} } + b \sqrt{\frac{a}{b}} = 2\sqrt{ab} 
+            \implies \tilde{P} = \frac{a}{\tilde{q}} = \frac{a}{\sqrt{\frac{a}{b}} } + b \sqrt{\frac{a}{b}} = 2\sqrt{ab} 
         \] 
         \GRAF
     \end{enumerate}
@@ -1416,12 +1430,12 @@ y que
 
 Para responde esto se simplifica considerando 2 insumos
 \begin{itemize}
-    \item Trabajo (labor) $\longrightarrow$ L
-    \item Capital (maquinarias, robots, tierra) $\longrightarrow$ K
+    \item Trabajo (labor) $\longrightarrow L$
+    \item Capital (maquinarias, robots, tierra) $\longrightarrow K$
 \end{itemize}
 
 \begin{definition}{Función de producción}
-    Función que asocia a cada combinación de insumos, el \underline{mayor} n° de unidades que es posible producir en un periodo de producción (usando insumos y tecnologías)
+    Función que asocia a cada combinación de insumos, el \underline{mayor} número de unidades que es posible producir en un periodo de producción (usando insumos y tecnologías)
     \[
     q = f\!\left( K, L \right) 
     \] 
@@ -1444,18 +1458,18 @@ Para responde esto se simplifica considerando 2 insumos
     La función de producción no representa si se podrá conseguir esa producción, sino cuanto se produciría en caso de tener la cantidad dada de insumos.
 \end{obs}
 
-\subsection{Producción Marginal}
+\subsection{Producción marginal}
 
 Si $q=f\!\left( K,L \right) $ es la función de producción de una firma, la productividad marginal del trabajo es la función
 
 \[
-P_{MgL}\!\left( K,L \right) = \frac{\partial f\!\left( K,L \right) }{\partial L}  = f_{L}\!\left( K,L \right) 
+P_{\text{mg}L}\!\left( K,L \right) = \frac{\partial f\!\left( K,L \right) }{\partial L}  = f_{L}\!\left( K,L \right) 
 \] 
 
 El incremento en la producción atribuible a la última unidad contratada de trabajo. Así mismo, la productividad marginal del capital se expresa como
 
 \[
-P_{MgK}\!\left( K,L \right) = \frac{\partial f\!\left( K,L \right) }{\partial K} = f_{K}\!\left( K,L \right) 
+P_{\text{mg}K}\!\left( K,L \right) = \frac{\partial f\!\left( K,L \right) }{\partial K} = f_{K}\!\left( K,L \right) 
 \] 
 
 La eficiencia tecnológica implica que 
@@ -1475,25 +1489,94 @@ Por ejemplo, si tenemos 10 personas y 10 martillos, si aumento 1 martillo entonc
 \end{example}
 
 \begin{example}
-    Suponga una empresa de ingenieros que usa computadores e ingenierios. Fijemos el número de computadores en $K_0$
+    Suponga una empresa de ingenieros que usa computadores e ingenieros. Fijemos el número de computadores en $K_0$
     \GRAF
     \GRAF
 \end{example}
 
 % 10 11 12
 
+\subsection{Isocuantas de producción}
 
+Son todas las combinaciones de $K$ y $L$ que permiten producir una cantidad dada, por ejemplo $q_0$, del producto
+\[
+\left\{\left(K,L\right):f\!\left(K,L\right)=q_0\right\}\text{.}
+\]
+
+\subsubsection{Propiedades}
+
+\begin{enumerate}
+\item Mientras más arriba y a la derecha, mayor es el nivel de producción. Esto viene de $f_K>0$ y $f_L>0$.
+\item El supuesto de eficiencia tecnológica implica que los isocuantas de producción no pueden cortarse.
+\item Si las productividades marginales son positivas, $f_K>0$ y $f_L>0$, entonces para cada $L$, existe un único $K$ que llevan a una producción $q_0$. Si hubiesen dos, una sería ineficiente. Esto implica que la isocuanta para $q_0$ está definida por una función $K\!\left(L,q_0\right)$ que para cada $L$ indica la cantidad necesaria de $K$ para producir $q_0$.
+\item La función $K\!\left(L,q_0\right)$ debe ser decreciente, si no, existe ineficiencia.
+\end{enumerate}
+
+\subsubsection{¿Convexidad de la isocuanta?}
+
+\begin{definition}{Tasa marginal de sustitución tecnológica de capital por trabajo}
+Sea $K\!\left(L,q\right)$ la ecuación de una isocuanta. Se define la TMSTCPT como sigue
+\[
+\mathrm{TST}_{K,L}=-\frac{\mathrm{d}K\!\left(L,q\right)}{\mathrm{d}L}\text{.}
+\]
+\end{definition}
+
+Entonces, la TST es la tasa a la cual se puede sustituir capital por trabajo sin afectar el nivel de producción. Es común que las isocuantas tasas de sustitución tecnológicas sean decrecientes
+\[
+\frac{\mathrm{d}\mathrm{TST}_{K,L}}{\mathrm{d}L}<0\Leftrightarrow\frac{\mathrm{d}^2K\!\left(L,q\right)}{\mathrm{d}L^2}>0\text{,}
+\]
+con lo que la isocuanta $K\!\left(L,q\right)$ es convexa.
+
+\begin{prop}{TST y productividad marginal}
+\[
+\mathrm{TST}_{K,L}=-\frac{\mathrm{d}K\!\left(L,q\right)}{\mathrm{d}L}=\frac{f_L}{f_K}=\frac{P_{\text{mg}L}}{P_{\text{mg}K}}\text{.}
+\]
+\end{prop}
+
+\begin{proof}
+Se tiene que $f\!\left(K\!\left(L,q_0\right),L\right)=q_0$, con lo que
+\[
+\frac{\mathrm{d}f\!\left(K\!\left(L,q_0\right),L\right)}{\mathrm{d}L}=\frac{\partial f}{\partial L}+\frac{\partial f}{\partial L}\frac{\mathrm{d}K\!\left(L,q_0\right)}{\mathrm{d}L}\text{,}
+\]
+y con esto se obtiene que
+\[
+-\frac{\mathrm{d}K\!\left(L,q_0\right)}{\mathrm{d}L}=\frac{f_L}{f_K}=\frac{P_{\text{mg}L}}{P_{\text{mg}K}}\text{.}
+\]
+\end{proof}
+
+\subsection{La función de costos}
+
+En secciones anteriores se asumió que las firmas maximizaban utilidades pues conocían su función de costo $C\!\left(q\right)$, que es el mínimo costo necesario para producir $q$. Se quiere saber de dónde viene $C\!\left(q\right)$; la firma se pregunta por la forma más barata de producir una cantidad paramétrica $q$.
+
+Los supuestos que se tienen son:
+\setlength{\parskip}{0cm}
+\begin{enumerate}
+\item las isocuantas de producción son convexas;
+\item los precios de los insumos son dato;
+\item $r$ es el precio o renta del capital;
+\item $w$ es el salario;
+\end{enumerate}
+\setlength{\parskip}{0.25cm}
+y, con esto, se tiene el siguiente sistema de ecuaciones
+\[\begin{cases}
+\displaystyle{C\!\left(q,w,L\right)=\min_{K,L}wL+rK} & \text{sujeto a} \\
+f\!\left(K,L\right)=q\text{.}
+\end{cases}\]
+
+Esta función de costos indica el mínimo gasto necesario para producir $q$ unidades si es que los precios de los insumos son $w$ y $r$. Para el análisis gráfico, se definen rectas de isogastos (isocosto), las cuales son el lugar geométrico de todas las combinaciones de $K$ y $L$ que cuestan lo mismo:
+\[
+\left\{\left(K,L\right):wL+rK=G_1\right\}=\left\{\left(K,L\right):K=\dfrac{G_1}{r}-\dfrac{w}{r}L\right\}\text{.}
+\]
+\GRAF
 
 % 13 14 15
 
 \subsection{El problema de la minimización del costo}
 
-\begin{cases}
-    \[
+\[\begin{cases}
     \min\limits_{K,L} \quad wL + rK\\
     f\!\left( K,L \right) = q
-\]
-\end{cases}
+\end{cases}\]
 
 \GRAF
 
@@ -1538,31 +1621,37 @@ Con esto, el problema de minimización de costo se expresa como
 
 En el óptimo, la $\mathrm{TST}$ debe ser igual a la razón entre precios de insumos
 
-\begin{enumerate}
-\item $\mathrm{TST}_{K,L} = \frac{\mathrm{d}K\!\left( L,q \right) }{\mathrm{d}L} = \frac{PMgL}{PMgK} = \frac{w}{r}$
-\item $f\!\left( K,L \right) = q$
-\end{enumerate}
+\begin{equation}\label{equ:1}
+\mathrm{TST}_{K,L} = \dfrac{\mathrm{d}K\!\left( L,q \right) }{\mathrm{d}L} = \dfrac{P_{\text{mg}L}}{P_{\text{mg}K}} = \dfrac{w}{r}
+\end{equation}
+
+\begin{equation}\label{equ:2}
+f\!\left( K,L \right) = q
+\end{equation}
 
 \begin{align*}
-    \text{de 1 y 2 } &\implies K_0\!\left( w,r,q \right) y L_0\!\left( w,r,q \right) \\
+    \text{de \ref{equ:1} y \ref{equ:2} } &\implies K_0\!\left( w,r,q \right)\qquad\text{y}\qquad L_0\!\left( w,r,q \right) \\
     &\implies \text{demandas condicionadas por factores o insumos}
 \end{align*}
 
+% Nueva página.
+\newpage
+
 \begin{example}
-    {$f\!\left( K,L \right) = k^{\frac{1}{2}} L^{\frac{1}{2}}$}
+    {$f\!\left( K,L \right) = K^{1/2} L^{1/2}$}
     \begin{enumerate}
         \item Demandas condicionales:
             \[
-                \frac{f_L}{f_K} = \frac{w}{r} \quad , \quad f\!\left( K,L \right) = q
+                \frac{f_L}{f_K} = \frac{w}{r} , \quad f\!\left( K,L \right) = q
             \] 
             \begin{align*}
-                &\implies \frac{\frac{1}{2}L^{\frac{-1}{2}}K^{\frac{1}{2}}}{\frac{1}{2}K^{\frac{-1}{2}}L^{\frac{1}{2}}} = \frac{w}{r} \land K^{\frac{1}{2}}L^{\frac{1}{2}} = q\\
-                &\implies \frac{K}{L} = \frac{w}{r} \land K^{\frac{1}{2}}L^{\frac{1}{2}} = q \\
-                &\implies \left( \frac{w}{r} \right) ^{\frac{1}{2}} L^{\frac{1}{2}}L^{\frac{1}{2}} = q \\
-                &\implies L_0\!\left( w,r,q \right) = \left( \frac{r}{w} \right) ^{\frac{1}{2}} \qquad K_0\!\left( w,r,q \right) = \left( \frac{w}{r} \right) ^{\frac{1}{2}} q
+                &\implies \frac{\frac{1}{2}L^{-1/2}K^{1/2}}{\frac{1}{2}K^{-1/2}L^{1/2}} = \frac{w}{r}\qquad \land \qquad K^{1/2}L^{1/2} = q\\
+                &\implies \frac{K}{L} = \frac{w}{r}\qquad \land\qquad K^{1/2}L^{1/2} = q \\
+                &\implies \left( \frac{w}{r} \right) ^{1/2} L^{1/2}L^{1/2} = q \\
+                &\implies L_0\!\left( w,r,q \right) = \left( \frac{r}{w} \right) ^{1/2} \qquad K_0\!\left( w,r,q \right) = \left( \frac{w}{r} \right) ^{1/2} q
             \end{align*}
             \begin{obs}
-                Las demandas condicionales por factores dependen de  $\frac{w}{r}$, si ambos precios cambian en la misma proporción $\alpha$, la demanda por insumos no va a cambiar porque la pendiente de la recta de isogasto no cambia
+                Las demandas condicionales por factores dependen de  $w/r$, si ambos precios cambian en la misma proporción $\alpha$, la demanda por insumos no va a cambiar porque la pendiente de la recta de isogasto no cambia
                 \begin{align*}
                     \implies & K\!\left( \alpha w, \alpha r, q \right) = K\!\left( w,r,q \right) \\
                              & L\!\left( \a w, \a r, q \right) = L\!\left( w,r,q \right) 
@@ -1591,9 +1680,8 @@ En el óptimo, la $\mathrm{TST}$ debe ser igual a la razón entre precios de ins
                     &= Aq
                 \end{align*}
 
-                donde $A$ es la constante que depende de los precios de insumos
-            
-
+                donde $A$ es la constante que depende de los precios de insumos.
+    \end{enumerate}
 \end{example}
 
 \begin{prop}{Propiedad de la función de costo}
@@ -1603,15 +1691,160 @@ En el óptimo, la $\mathrm{TST}$ debe ser igual a la razón entre precios de ins
         &= \a\left( w L_0\!\left( w,r,q \right) + r K_0\!\left( w,r,q \right)  \right)  \\
         &= \a C\!\left( w,r,q \right) 
     \end{align*}
-
-% 16 17 18
-    La función de costo es homogénea de grado 1 en los precios de factores o insumos
+es decir, la función de costo es homogénea de grado 1 en los precios de factores o insumos
 \end{prop}
 
+% 16 17 18
 
+\section{Elasticidad de sustitución}
+
+\begin{enumerate}
+\item La isocuanta de producción determina las combinaciones factibles de $\left(K,L\right)$ para producir $q_0$.
+\item La $\mathrm{TST}_{K,L}$ indica cuánto capital se puede sustituir por trabajo sin afectar la producción.
+\item En el óptimo, $\mathrm{TST}_{K,L}=\dfrac{w}{r}$, con lo que $K_0\!\left(w,r,q_0\right)$ y $L_0\!\left(w,r,q_0\right)$.
+\item Las demandas ondicionales por factores y la función de costo dependen de precios relativos.
+\end{enumerate}
+
+\GRAF
+
+\begin{definition}{Elasticidad de sustitución}
+Sea $\Omega=\dfrac{w}{r}$ y sea $\Lambda=\dfrac{K\!\left(w,r,q\right)}{L\!\left(w,r,q\right)}$ (óptimo). Se tiene que la ecuación de la \textbf{elasticidad de sustitución} se define por
+\[
+\Theta_{K,L}:=\frac{\partial\Lambda}{\partial\Omega}\frac{\Omega}{\Lambda}\text{,}
+\]
+es decir, es el porcentaje en que cambia la razón $\dfrac{K}{L}$ cuando la razón $\dfrac{w}{r}$ varía en un 1\%.
+\end{definition}
+
+\subsection{Elasticidad de sustitución y cambios de los costos}
+
+\begin{enumerate}
+\item A mayor elasticidad de sustitución, menor será el efecto de un cambio en los precios relativos $\dfrac{w}{r}$ en los costos.
+\item Si $\dfrac{w}{r}$ aumenta en un 1\%, entonces $\Theta_{K,L}$ es muy pequeño. La firma no logra sustituir al insumo que es relativamente más barato.
+\item Si $\Theta_{K,L}$ es grande, entonces las firmas logran sustituir al insumo que es más barato.
+\end{enumerate}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{fff.png}
+\end{center}
+\caption{Soy un flojo culiao y por eso hago esto}
+\end{figure}
+
+% Nueva página.
+\newpage
+
+\begin{example}{Elasticidad de sustitución}
+Calcular la elasticidad de sustitución para la tecnología dada por $f\!\left(K,L\right)=AK^\a L^\b$. Se tiene que
+\[
+\mathrm{TST}_{K,L}=\frac{f_L}{f_K}=\frac{w}{r}\qquad\text{y}\qquad f\!\left(K,L\right)=AK^\a L^\b=q\text{,}
+\]
+con lo que, derivando la segunda ecuación, se obtiene que
+\begin{align*}
+\frac{A\b L_0\!\left(\dfrac{w}{r},q\right)^{\b-1}K_0\!\left(\dfrac{w}{r},q\right)^\a}{A\a L_0\!\left(\dfrac{w}{r},q\right)^\b K_0\!\left(\dfrac{w}{r},q\right)^{\a-1}}& = \Omega \\
+\frac{\b K_0\!\left(\dfrac{w}{r},q\right)}{\a L_0\!\left(\dfrac{w}{r},q\right)} & = \Omega\text{,}
+\end{align*}
+lo que implica que
+\[
+\frac{\b}{\a}\Lambda=\Omega\Rightarrow\Lambda=\frac{\a}{\b}\Omega\text{,}
+\]
+y, finalmente, se tiene que
+\[
+\Theta_{K,L}=\frac{\partial\Lambda}{\partial\Omega}\frac{\Omega}{\Lambda}=\frac{\a}{\b}\frac{\Omega}{\left(\a/\b\right)\Omega}=1\text{.}
+\]
+\end{example}
+
+\subsection{Distinción entre corto y largo plazo}
+
+\begin{enumerate}
+\item \textbf{Flexibilidad al momento de tomar decisiones:} A corto plazo, se tiene que existen insumos que están fijos, es decir, su nivel no puede variar. A largo plazo, todos los insumos son variables. Obviamente la mayor flexibilidad es tal que para todo $q$, $C^{\left(\text{lp}\right)}\!\left(q\right)\le C^{\left(\text{cp}\right)}\!\left(q\right)$.
+\item A corto plazo, el número de firmas es fijo. A largo plazo, el número de firmas es variable.
+\end{enumerate}
+
+\subsubsection{Equilibrio a largo plazo}
+
+\begin{enumerate}
+\item $P$ y $Q$ corresponden a equilibrios a corto plazo.
+\item No hay incentivos para que varíen las firmas (esto es, tecnologías, precios de insumos y demanda fijos).
+\item \textbf{Implicancias:}
+\begin{enumerate}
+\item Las firmas tienen $\pi=0$, de lo contrario, firmas entran o salen.
+\item Si $\pi>0$, entonces el número de firmas aumenta, con lo que la oferta se expande, disminuye el precio y con esto, $\pi$.
+\item Todas las firmas tienen acceso a la misma tecnología a largo plazo.
+\end{enumerate}
+\end{enumerate}
+
+\GRAF
+
+Se tiene que
+\begin{align*}
+\pi & = Pq-C^{\left(\text{lp}\right)}\!\left(q\right) \\
+& = Pq - C_\text{me}^{\left(\text{lp}\right)}\!\left(q\right)q\\
+& = \left(P-C_\text{me}^{\left(\text{lp}\right)}\!\left(q\right)\right)q\text{,}
+\end{align*}
+con lo que, cuando $\pi=0$, se obtiene $P^*=C_\text{me}^{\left(\text{lp}\right)}\!\left(q\right)$, y debe ser $P^*=\min C_\text{me}^{\left(\text{lp}\right)}\!\left(q\right)$, pues si no, una firma tiene incentivo para aumentar su producción, bajar su costo promedio, cobrar menos y tener $\pi?0$. $P^*=C_\text{me}^{\left(\text{lp}\right)}\!\left(q\right)$ también determina la producción de cada firma.
+
+Con esto, se tiene que la industria produce
+$$Q^*=D\!\left(P^*\right)=D\!\left(C_\text{me}^{\left(\text{lp}\right)}\!\left(q\right)\right)\text{,}$$
+con $D$ la función de demanda. Y el número de firmas en el equilibrio a largo plazo será
+\[ n^*=\frac{Q^*}{q^*}\text{.} \]
 
 % 19 20 21
 
+\begin{example}{Equilibrio a largo plazo}
+Se quiere calcular el equilibrio competitivo a largo plazo para el siguiente sistema:
+\[\begin{cases}
+C\!\left(q\right)=1000+\left(q-10\right)^3 \\
+D\!\left(P\right)=90000-1000P\text{.}
+\end{cases}\]
 
+Se tiene que
+\[
+C_\text{me}^{\left(\text{lp}\right)}\!\left(q\right)=\frac{1000+\left(q-10\right)^3}{q}\Rightarrow C_\text{me}^{\left(\text{lp}\right)\prime}\!\left(q\right)=\frac{3\left(q-10\right)^2-1000-\left(q-10\right)^3}{q^2}\text{,}
+\]
+con lo que $3\left(q-10\right)^2-1000-\left(q-10\right)^3=0$ implica que
+\[ q^*=15\text{,} \]
+y, calculando $P^*$ y $Q^*$,
+\[
+P^*=C_\text{me}^{\left(\text{lp}\right)}\!\left(q^*\right)=\frac{1000+\left(15-10\right)^3}{15}=75\qquad\text{y}\qquad Q^*=D\!\left(P^*\right)=90000-1000\cdot75=15000\text{,}
+\]
+y, calculando $n*$,
+\[
+n*=\frac{Q^*}{q^*}=\frac{15000}{15}=1000\text{.}
+\]
+\end{example}
+
+\subsection{Estática comparativa a largos plazos}
+
+En el corto plazo cómo varían las curvas de demanda y oferta cuando varían cosas externas. Puntos de equilibrio antes y después. En el largo plazo no hay una función de oferta análoga a la de corto plazo. El número de firmas depende de la demanda que haya por el bien.
+
+\subsubsection{Aumento de la demanda}
+
+\begin{enumerate}
+\item Equilibroi del largo plazo inicial $\left(P_0,Q_0,q_0,n_0\right)$ con función de oferta de corto plazo $S_0$ y demanda $D_0$.
+\GRAF
+\item Cambio en los gustos que expande la demanda en $D_1$. En el corto plazo, las funciones de oferta no cambian. Ahora la firma produce $q_1$, con $\pi>0$.
+\item $\pi>0$ atrae la entrada de nuevas firmas, lo que desplaza la función de oferta de corto plazo hacia afuera. Entran firmas hasta que el precio baje a $P_0$, de modo que $\pi=0$ y cada firma produce $q_0$ nuevamente. En el largo plazo final:
+\begin{center}
+\begin{tabular}{c|c}
+$P_2=P_0$ & precio de equilibrio \\
+$q_2=q_0$ & producción individual \\
+$Q_2>Q_1$ & aumento \\
+$n_2>n_0$ & aumento
+\end{tabular}
+\end{center}
+\end{enumerate}
+
+\subsection{Economías de escala}
+
+El $P_\text{mg}$ es el beneficio de aumentar en una cantidad la de un insumo dejando los otros constantes. ¿Cómo se mide el beneficio de aumentar todos los insumos? Suponiendo que todos los insumos aumentan en la misma proporción, se tiene que inicialmente $f\!\left(K_0,L_0\right)=q_0$, y suponiendo que $\a=1.1$, se tienen 3 casos
+\[
+f\!\left(\a K_0,\a L_0\right)=\begin{cases}
+\a f\!\left(K_0,L_0\right)=\a q_0 \\
+>\a f\!\left(K_0,L_0\right) & \text{aumenta más del 10\%;} \\
+<\a f\!\left(K_0,L_0\right) & \text{aumenta menos del 10\%.}
+\end{cases}
+\]
+
+La caracterización de estos tres casos se refleja en los costos y los equilibrios de largo plazo.
 
 \end{document}
